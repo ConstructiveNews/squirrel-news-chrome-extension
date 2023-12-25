@@ -27,13 +27,14 @@ export default function App() {
         const fetchedIssues: unknown[] = [];
         snapshot.forEach((doc) => {
           const data = doc.data();
+          
           fetchedIssues.push({
             id: doc.id,
             headline: data.headline,
             teaser: data.teaser,
             image: data.image,
             issueURL: data.issueURL,
-            publishedAt: new Date(data.publishedAt.seconds * 1000),
+            publishedAt: data.publishedAt.seconds * 1000,
             language: data.language
           });
         });

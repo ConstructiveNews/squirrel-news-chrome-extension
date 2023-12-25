@@ -7,7 +7,7 @@ export type Issue = {
   teaser: string;
   image: string;
   issueURL: string;
-  publishedAt: string;
+  publishedAt: number;
   language: "en" | "de";
 };
 
