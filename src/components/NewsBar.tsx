@@ -5,9 +5,11 @@ export default function NewsBar() {
   const {issues} = useAppStore();
 
   return (
-    <div className="flex flex-row gap-20 items-center justify-center">
+    <div className="grid grid-cols-4 gap-8">
       {issues.map((issue: Issue) => (
-        <div key={issue.id}>
+        <div 
+          className=""
+          key={issue.id}>
           <NewsItem
             issue={issue}
           />
