@@ -3,11 +3,12 @@ import { persist, createJSONStorage } from "zustand/middleware";
 
 export type Issue = {
   id: number;
-  title: string;
-  description: string;
+  headline: string;
+  teaser: string;
   image: string;
-  link: string;
+  issueURL: string;
   publishedAt: string;
+  language: "en" | "de";
 };
 
 export type AppStore = {

@@ -4,10 +4,13 @@ import firebaseConfig from '../firebase-config.json';
 import { useEffect } from "react";
 import firebase from 'firebase/compat/app';
 import "firebase/compat/firestore"
+import {Issue, useAppStore} from "./store";
 
 firebase.initializeApp(firebaseConfig);
 
 export default function App() {
+  const {setIssues} = useAppStore();
+
   useEffect(() => {
     const fetchIssues = async () => {
       const db = firebase.firestore();
@@ -15,6 +18,8 @@ export default function App() {
       try {
         const snapshot = await db
           .collection('issues')
+          .orderBy("issueURL")
+          .where("issueURL", "!=", "")
           .orderBy('publishedAt', 'desc')
           .limit(4)
           .get();
@@ -24,20 +29,23 @@ export default function App() {
           const data = doc.data();
           fetchedIssues.push({
             id: doc.id,
-            // Add other fields as needed
-            // For example: title: data.title, description: data.description, ...
-            publishedAt: data.publishedAt,
+            headline: data.headline,
+            teaser: data.teaser,
+            image: data.image,
+            issueURL: data.issueURL,
+            publishedAt: new Date(data.publishedAt.seconds * 1000),
+            language: data.language
           });
         });
 
-        console.log(fetchedIssues);
+        setIssues(fetchedIssues as Issue[]);
       } catch (error) {
         console.error('Error fetching issues:', error);
       }
     };
 
     fetchIssues();
-  }, []);
+  }, [setIssues]);
   
   return (
     <div className="h-screen container">
