@@ -17,7 +17,7 @@ export default function SearchBar() {
   };
 
   return (
-    <div className="flex items-center justify-center pt-60 mb-32">
+    <div className="flex items-center justify-center pt-40 mb-24">
       <input
         type="text"
         id="searchBar"
