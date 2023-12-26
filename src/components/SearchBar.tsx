@@ -25,12 +25,12 @@ export default function SearchBar() {
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         onKeyDown={handleKeyPress}
-        className="mr-2 p-2 border rounded"
+        className="mr-2 p-2 text-base border rounded"
       />
       <button
         id="searchButton"
         onClick={performSearch}
-        className="p-2 bg-blue-500 text-white rounded cursor-pointer"
+        className="p-2 bg-blue-500 text-base text-white rounded cursor-pointer"
       >
         Search
       </button>
