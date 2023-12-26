@@ -49,7 +49,7 @@ export default function App() {
   }, [setIssues]);
   
   return (
-    <div className="h-screen container">
+    <div className="h-screen container font-lato">
       <SearchBar />
       <NewsBar />
     </div>

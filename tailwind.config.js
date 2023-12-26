@@ -8,7 +8,11 @@ export default {
     container: {
       center: true,
     },
-    extend: {},
+    extend: {
+      fontFamily: {
+        lato: ['Lato', 'sans-serif'],
+      }
+    },
   },
   plugins: [],
 }
