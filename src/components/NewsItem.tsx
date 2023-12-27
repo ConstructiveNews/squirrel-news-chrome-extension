@@ -1,20 +1,22 @@
-import { Issue } from "../store";
+import { Article } from "../store";
 import moment from "moment";
 
 interface NewsItemProps {
-  issue: Issue;
+  article: Article;
 }
 
-export default function NewsItem({ issue }: NewsItemProps) {
+export default function NewsItem({ article }: NewsItemProps) {
+
   return (
     <a 
-      href={issue.issueURL}
+      href={article.url}
       target="_blank"
       className="flex flex-col">
-      <img className="mb-4" src={issue.image} alt={issue.headline} />
-      <div className="mb-1 text-sm">{moment(issue.publishedAt).format('MMMM Do YYYY')}</div>
-      <h3 className="text-base font-bold mb-4 leading-tight	">{issue.headline}</h3>      
-      {/* <div>{issue.teaser}</div> */}
+      <img className="mb-4" src={article.image} alt={article.title} />
+      <div className="text-slate-400	">{article.source}</div>
+      <div className="mb-1 text-sm">{moment(article.dateCreated).format('MMMM Do YYYY')}</div>
+      <h3 className="text-base font-bold mb-4 leading-tight	">{article.title}</h3>      
+      {/* <div>{article.teaser}</div> */}
     </a>
   );
 }

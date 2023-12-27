@@ -1,19 +1,21 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 
-export type Issue = {
-  id: number;
-  headline: string;
-  teaser: string;
+export type Article = {
+  id: string;
+  credit: string;
+  dateCreated: number;
   image: string;
-  issueURL: string;
-  publishedAt: number;
   language: "en" | "de";
+  source: string;
+  teaser: string;
+  title: string;
+  url: string;
 };
 
 export type AppStore = {
-  issues: Issue[];
-  setIssues: (issues: Issue[]) => void;
+  articles: Article[];
+  setArticles: (articles: Article[]) => void;
 };
 
 type AppStoreState = {
@@ -23,8 +25,8 @@ type AppStoreState = {
 export const useAppStore = create(
   persist<AppStoreState>(
     (set) => ({
-      issues: [],
-      setIssues: (issues) => set({ issues })
+      articles: [],
+      setArticles: (articles) => set({ articles })
     }),
     {
       name: "squirrel-news-tab-storage",
