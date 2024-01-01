@@ -5,8 +5,7 @@ export default function SearchBar() {
 
   const performSearch = () => {
     if (searchTerm) {
-      const googleSearchURL = 'https://www.google.com/search?q=' + encodeURIComponent(searchTerm);
-      window.location.href = googleSearchURL;
+      chrome.search.query({ text: searchTerm, disposition: 'NEW_TAB' });
     }
   };
 
