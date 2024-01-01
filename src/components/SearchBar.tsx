@@ -20,16 +20,16 @@ export default function SearchBar() {
       <input
         type="text"
         id="searchBar"
-        placeholder="Search on Google"
+        placeholder="Type anything to search..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         onKeyDown={handleKeyPress}
-        className="mr-2 p-2 text-base border rounded"
+        className="mr-2 p-2 text-base border rounded w-64"
       />
       <button
         id="searchButton"
         onClick={performSearch}
-        className="p-2 bg-blue-500 text-base text-white rounded cursor-pointer"
+        className="p-2 bg-black text-base text-white rounded cursor-pointer"
       >
         Search
       </button>
