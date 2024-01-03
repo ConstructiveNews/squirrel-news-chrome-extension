@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 import { Article, useAppStore } from "./store";
-import Logo from "./components/Logo";
+import Navbar from "./components/Navbar";
 import SearchBar from "./components/SearchBar";
 import NewsItem from "./components/NewsItem";
 
@@ -63,9 +63,7 @@ export default function App() {
   return (
     <div className="h-screen font-lato">
       <div className="flex flex-col px-32">
-        <div className="pt-8 mb-16">
-          <Logo />
-        </div>
+          <Navbar />
         <div>
           <SearchBar />
         </div>
