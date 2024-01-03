@@ -6,7 +6,6 @@ export type Article = {
   credit: string;
   dateCreated: number;
   image: string;
-  language: "en" | "de";
   source: string;
   teaser: string;
   title: string;
@@ -26,11 +25,11 @@ export const useAppStore = create(
   persist<AppStoreState>(
     (set) => ({
       articles: [],
-      setArticles: (articles) => set({ articles })
+      setArticles: (articles) => set({ articles }),
     }),
     {
       name: "squirrel-news-tab-storage",
-      storage: createJSONStorage(() => sessionStorage)
+      storage: createJSONStorage(() => sessionStorage),
     }
   )
 );

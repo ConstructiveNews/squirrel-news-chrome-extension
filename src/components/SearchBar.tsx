@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useTranslation } from "react-i18next";
 
 export default function SearchBar() {
+  const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState<string>('');
 
   const performSearch = () => {
@@ -20,7 +22,7 @@ export default function SearchBar() {
       <input
         type="text"
         id="searchBar"
-        placeholder="Type anything to search in web..."
+        placeholder={t('search.placeholder')}
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         onKeyDown={handleKeyPress}
@@ -31,7 +33,7 @@ export default function SearchBar() {
         onClick={performSearch}
         className="p-2 bg-black text-base text-white rounded cursor-pointer"
       >
-        Search
+        {t('search.button')}
       </button>
     </div>
   );

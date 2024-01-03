@@ -6,6 +6,8 @@ import { Article, useAppStore } from "./store";
 import Navbar from "./components/Navbar";
 import SearchBar from "./components/SearchBar";
 import NewsItem from "./components/NewsItem";
+import "./i18n";
+import i18n from "./i18n";
 
 firebase.initializeApp(firebaseConfig);
 
@@ -19,7 +21,7 @@ export default function App() {
       try {
         const issuesSnapshot = await db
           .collection("issues")
-          .where("language", "==", "en")
+          .where("language", "==", i18n.language)
           .orderBy("publishedAt", "desc")
           .limit(1)
           .get();
@@ -42,7 +44,6 @@ export default function App() {
               credit: article.credit,
               dateCreated: article.dateCreated?.seconds * 1000,
               image: article.imageUrl,
-              language: article.language,
               source: article.source,
               teaser: article.teaser,
               title: article.title,

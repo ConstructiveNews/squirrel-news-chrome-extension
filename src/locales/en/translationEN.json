@@ -1,0 +1,13 @@
+{
+  "de": "German",
+  "en": "English",
+
+  "search": {
+    "button": "Search",
+    "placeholder": "Type anything to search in web..."
+  },
+
+  "LanguageSwitcher": {
+    "choose_language": "Choose language"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "de": "Deutsch",
+  "en": "Englisch",
+
+  "search": {
+    "button": "Suchen",
+    "placeholder": "Suche nach einem Begriff im Web..."
+  },
+
+  "LanguageSwitcher": {
+    "choose_language": "Sprache wählen"
+  }
+}
