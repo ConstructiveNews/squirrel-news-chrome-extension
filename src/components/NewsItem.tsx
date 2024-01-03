@@ -10,7 +10,6 @@ export default function NewsItem({ article }: NewsItemProps) {
   return (
     <a 
       href={article.url}
-      target="_blank"
       className="flex flex-col">
       {/* <div className="mb-2 text-sm">{moment(article.dateCreated).format('MMMM Do YYYY')}</div> */}
       <img className="mb-2 h-40 object-cover" src={article.image} alt={article.title} />
