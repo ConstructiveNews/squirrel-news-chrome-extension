@@ -5,7 +5,7 @@ export default function SearchBar() {
 
   const performSearch = () => {
     if (searchTerm) {
-      chrome.search.query({ text: searchTerm, disposition: 'NEW_TAB' });
+      chrome.search.query({ text: searchTerm, disposition: 'CURRENT_TAB' });
     }
   };
 
