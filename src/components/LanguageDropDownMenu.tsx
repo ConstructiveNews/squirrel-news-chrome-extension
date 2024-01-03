@@ -1,4 +1,6 @@
 import { useTranslation } from "react-i18next";
+import { fetchArticles } from "../utils/fetchArticles";
+import { useAppStore } from "../store";
 
 export type LanguageDropDownMenuProps = {
   setMenuOpen: (open: boolean) => void;
@@ -8,11 +10,15 @@ export default function LanguageDropDownMenu({
   setMenuOpen
 }: LanguageDropDownMenuProps) {
   const { t, i18n } = useTranslation();
+
+  const { setArticles } = useAppStore();
+
   const changeLanguage = (lng: string) => i18n.changeLanguage(lng);
 
   const handleChange = (language: string) => {
     changeLanguage(language);
     setMenuOpen(false);
+    fetchArticles(setArticles);
   };
 
   const availableLanguages =
