@@ -16,11 +16,11 @@ export default function SearchBar() {
   };
 
   return (
-    <div className="flex items-center justify-center pt-40 mb-24">
+    <div className="flex items-center justify-center mb-16">
       <input
         type="text"
         id="searchBar"
-        placeholder="Type anything to search..."
+        placeholder="Type anything to search in web..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         onKeyDown={handleKeyPress}

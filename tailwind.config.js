@@ -5,9 +5,6 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    container: {
-      center: true,
-    },
     extend: {
       fontFamily: {
         lato: ['Lato', 'sans-serif'],

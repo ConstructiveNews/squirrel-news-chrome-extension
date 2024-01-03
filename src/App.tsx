@@ -1,15 +1,16 @@
-import SearchBar from "./components/SearchBar";
-import NewsBar from "./components/NewsBar";
 import firebaseConfig from "../firebase-config.json";
 import { useEffect } from "react";
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 import { Article, useAppStore } from "./store";
+import Logo from "./components/Logo";
+import SearchBar from "./components/SearchBar";
+import NewsItem from "./components/NewsItem";
 
 firebase.initializeApp(firebaseConfig);
 
 export default function App() {
-  const { setArticles } = useAppStore();
+  const { articles, setArticles } = useAppStore();
 
   useEffect(() => {
     const fetchIssues = async () => {
@@ -60,9 +61,22 @@ export default function App() {
   }, [setArticles]);
 
   return (
-    <div className="h-screen container font-lato">
-      <SearchBar />
-      <NewsBar />
+    <div className="h-screen font-lato">
+      <div className="flex flex-col px-32">
+        <div className="pt-8 mb-16">
+          <Logo />
+        </div>
+        <div>
+          <SearchBar />
+        </div>
+        <div className="grid grid-cols-4 gap-12">
+          {articles.map((article: Article) => (
+            <div className="" key={article.id}>
+              <NewsItem article={article} />
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
