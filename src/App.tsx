@@ -62,12 +62,10 @@ export default function App() {
 
   return (
     <div className="h-screen font-lato">
-      <div className="flex flex-col px-32">
-          <Navbar />
-        <div>
+      <div className="flex flex-col px-4 md:px-32">
+        <Navbar />
           <SearchBar />
-        </div>
-        <div className="grid grid-cols-4 gap-12">
+        <div className="grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-12 mb-12">
           {articles.map((article: Article) => (
             <div className="" key={article.id}>
               <NewsItem article={article} />

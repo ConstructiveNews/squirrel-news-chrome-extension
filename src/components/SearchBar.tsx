@@ -16,7 +16,7 @@ export default function SearchBar() {
   };
 
   return (
-    <div className="flex items-center justify-center mb-16">
+    <div className="flex items-center justify-center w-full	mb-16">
       <input
         type="text"
         id="searchBar"
@@ -24,7 +24,7 @@ export default function SearchBar() {
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         onKeyDown={handleKeyPress}
-        className="mr-2 p-2 text-base border rounded w-64"
+        className="block w-full mr-2 p-2 text-base border rounded"
       />
       <button
         id="searchButton"
