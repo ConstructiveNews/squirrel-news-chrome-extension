@@ -31,7 +31,7 @@ export default function App() {
             .collection("issues")
             .doc(lastIssueId)
             .collection("articles")
-            .limit(4)
+            .limit(8)
             .get();
 
           const articlesData = articlesSnapshot.docs.map((doc) => {
