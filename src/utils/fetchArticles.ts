@@ -9,7 +9,6 @@ firebase.initializeApp(firebaseConfig);
 export const fetchArticles = async (setArticles: (articles: Article[]) => void) => {
   const db = firebase.firestore();
 
-  console.log("lang:", i18n.language)
   try {
     const issuesSnapshot = await db
       .collection("issues")

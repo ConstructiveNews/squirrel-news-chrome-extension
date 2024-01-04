@@ -7,14 +7,37 @@ import "./i18n";
 import { fetchArticles } from "./utils/fetchArticles";
 
 export default function App() {
-  const { articles, setArticles } = useAppStore();
+  const { articles, setArticles, setMode } = useAppStore();
+
+  useEffect(() => {
+    const handleMode = () => {
+      const currentMode = localStorage.theme;
+      console.log("currentMode ->>>", currentMode);
+
+      if (
+        currentMode === "dark" ||
+        (!("theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.documentElement.classList.add("dark");
+        setMode("dark");
+        console.log("dark mode set")
+      } else {
+        document.documentElement.classList.remove("dark");
+        setMode("light");
+        console.log("light mode set")
+      }
+    };
+
+    handleMode();
+  }, [setMode]);
 
   useEffect(() => {
     fetchArticles(setArticles);
   }, [setArticles]);
 
   return (
-    <div className="h-screen font-lato">
+    <div className="font-lato dark:bg-slate-800">
       <div className="flex flex-col px-4 md:px-32">
         <Navbar />
         <SearchBar />

@@ -31,7 +31,7 @@ export default function SearchBar() {
       <button
         id="searchButton"
         onClick={performSearch}
-        className="p-2 bg-black text-base text-white rounded cursor-pointer"
+        className="p-2 bg-black text-base text-white rounded cursor-pointer dark:bg-red-700"
       >
         {t('search.button')}
       </button>

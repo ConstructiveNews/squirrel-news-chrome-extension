@@ -15,6 +15,8 @@ export type Article = {
 export type AppStore = {
   articles: Article[];
   setArticles: (articles: Article[]) => void;
+  mode: string;
+  setMode: (mode: string) => void;
 };
 
 type AppStoreState = {
@@ -26,6 +28,8 @@ export const useAppStore = create(
     (set) => ({
       articles: [],
       setArticles: (articles) => set({ articles }),
+      mode: "",
+      setMode: (mode) => set({ mode }),
     }),
     {
       name: "squirrel-news-tab-storage",

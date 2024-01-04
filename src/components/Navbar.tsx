@@ -1,6 +1,6 @@
 import Logo from "./Logo";
 import LanguageSwitcher from "./LanguageSwitcher";
-import Theme from "./Theme";
+import ModeSwitcher from "./ModeSwitcher";
 
 export default function Navbar() {
   return (
@@ -10,7 +10,7 @@ export default function Navbar() {
       </div>
       <div className="flex flex-row gap-4">
         <LanguageSwitcher />
-        <Theme />
+        <ModeSwitcher />
       </div>
     </div>
   );
