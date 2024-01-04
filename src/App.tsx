@@ -12,7 +12,6 @@ export default function App() {
   useEffect(() => {
     const handleMode = () => {
       const currentMode = localStorage.theme;
-      console.log("currentMode ->>>", currentMode);
 
       if (
         currentMode === "dark" ||
@@ -21,11 +20,9 @@ export default function App() {
       ) {
         document.documentElement.classList.add("dark");
         setMode("dark");
-        console.log("dark mode set");
       } else {
         document.documentElement.classList.remove("dark");
         setMode("light");
-        console.log("light mode set");
       }
     };
 
