@@ -1,40 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 
 export default function SearchBar() {
   const { t } = useTranslation();
-  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
   const performSearch = () => {
     if (searchTerm) {
-      chrome.search.query({ text: searchTerm, disposition: 'CURRENT_TAB' });
+      chrome.search.query({ text: searchTerm, disposition: "CURRENT_TAB" });
     }
   };
 
   const handleKeyPress = (event: React.KeyboardEvent) => {
-    if (event.key === 'Enter') {
+    if (event.key === "Enter") {
       performSearch();
     }
   };
 
   return (
-    <div className="flex items-center justify-center w-full	mb-16">
-      <input
-        type="text"
-        id="searchBar"
-        placeholder={t('search.placeholder')}
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        onKeyDown={handleKeyPress}
-        className="block w-full mr-2 p-2 text-base border rounded"
-      />
-      <button
-        id="searchButton"
-        onClick={performSearch}
-        className="p-2 bg-black text-base text-white rounded cursor-pointer dark:bg-red-700"
-      >
-        {t('search.button')}
-      </button>
+    <div className="flex justify-center items-center mb-6 md:mb-16 lg:mb-24">
+      <div className="flex justify-between w-full lg:w-auto items-center border-2 border-gray-400 h-10 px-5 rounded-lg text-sm dark:border-gray-300">
+        <input
+          type="search"
+          name="search"
+          placeholder={t("search.placeholder")}
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          onKeyDown={handleKeyPress}
+          className="outline-none border-none flex-1 md:w-72 bg-transparent dark:text-white"
+        />
+        <button type="submit" className="ml-4" onClick={performSearch}>
+          <MagnifyingGlassIcon className="text-gray-600 h-5 w-5 dark:text-white" />
+        </button>
+      </div>
     </div>
   );
 }

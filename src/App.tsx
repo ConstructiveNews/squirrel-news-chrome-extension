@@ -21,11 +21,11 @@ export default function App() {
       ) {
         document.documentElement.classList.add("dark");
         setMode("dark");
-        console.log("dark mode set")
+        console.log("dark mode set");
       } else {
         document.documentElement.classList.remove("dark");
         setMode("light");
-        console.log("light mode set")
+        console.log("light mode set");
       }
     };
 
@@ -37,11 +37,11 @@ export default function App() {
   }, [setArticles]);
 
   return (
-    <div className="font-lato dark:bg-slate-800">
+    <div className="font-lato dark:bg-slate-800 lg:h-lvh">
       <div className="flex flex-col px-4 md:px-32">
         <Navbar />
         <SearchBar />
-        <div className="grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-12 mb-12">
+        <div className="grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-12 mb-10">
           {articles.map((article: Article) => (
             <div className="" key={article.id}>
               <NewsItem article={article} />

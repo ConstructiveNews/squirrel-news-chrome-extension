@@ -4,7 +4,7 @@ import ModeSwitcher from "./ModeSwitcher";
 
 export default function Navbar() {
   return (
-    <div className="w-full flex justify-between items-center pt-8 mb-16">
+    <div className="w-full flex justify-between items-center pt-8 mb-6 md:mb-16">
       <div>
         <Logo />  
       </div>
