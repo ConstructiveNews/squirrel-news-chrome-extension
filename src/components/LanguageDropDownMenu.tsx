@@ -29,12 +29,12 @@ export default function LanguageDropDownMenu({
   return (
     <div
       className="absolute right-0 top-full z-10 flex 
-      w-max origin-top-right flex-col items-center rounded-md border-2 border-white 
-      bg-white text-stone-900 md:w-max md:border-stone-900 "
+      w-max origin-top-right flex-col items-center rounded-lg border-2
+      bg-white text-stone-900 md:w-max border-stone-900"
     >
       {availableLanguages.map((language) => (
         <div
-          className="flex w-24 cursor-pointer flex-col items-center justify-center p-2 first:rounded-t-md last:rounded-b-md hover:bg-[#80DCAC]"
+          className="flex w-24 text-base cursor-pointer flex-col items-center justify-center p-2 first:rounded-t last:rounded-b-md hover:bg-[#e40c5a]"
           key={language}
           onClick={() => handleChange(language)}
         >

@@ -1,4 +1,4 @@
-import logo from '../assets/logo_small.svg';
+import logo from "../../public/icons/logos/logo-small.svg"
 
 export default function PopUpLogo() {
   return (
