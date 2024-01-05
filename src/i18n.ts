@@ -16,8 +16,6 @@ const resources = {
   }
 };
 
-const defaultLanguage = navigator.language.split(/[-_]/)[0];
-
 i18n
   .use(Backend)
   .use(LanguageDetector)
@@ -25,7 +23,6 @@ i18n
   .init({
     resources,
     fallbackLng: "en",
-    lng: defaultLanguage,
     debug: true,
     interpolation: {
       escapeValue: false

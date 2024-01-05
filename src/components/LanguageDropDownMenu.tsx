@@ -34,7 +34,7 @@ export default function LanguageDropDownMenu({
     >
       {availableLanguages.map((language) => (
         <div
-          className="flex w-24 text-base cursor-pointer flex-col items-center justify-center p-2 first:rounded-t last:rounded-b-md hover:bg-[#e40c5a]"
+          className="flex w-20 text-base cursor-pointer flex-col items-center justify-center p-2 first:rounded-t-md last:rounded-b-md hover:bg-[#e40c5a]"
           key={language}
           onClick={() => handleChange(language)}
         >

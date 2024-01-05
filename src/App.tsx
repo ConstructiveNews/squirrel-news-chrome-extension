@@ -5,6 +5,7 @@ import SearchBar from "./components/SearchBar";
 import NewsItem from "./components/NewsItem";
 import "./i18n";
 import { fetchArticles } from "./utils/fetchArticles";
+import i18n from "./i18n";
 
 export default function App() {
   const { articles, setArticles, setMode } = useAppStore();
@@ -25,9 +26,14 @@ export default function App() {
         setMode("light");
       }
     };
-
+    
     handleMode();
   }, [setMode]);
+
+  useEffect(() => {
+    const defaultLanguage = navigator.language.split(/[-_]/)[0];
+    i18n.changeLanguage(defaultLanguage !== "de" ? "en" : "de");
+  }, []);
 
   useEffect(() => {
     fetchArticles(setArticles);
