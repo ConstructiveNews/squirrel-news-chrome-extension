@@ -24,7 +24,7 @@ export default function ModeSwitcher() {
       <div
         role="button"
         data-testid="mode-switcher-icon"
-        className="w-7"
+        className="w-8"
         onClick={toggleMenu}
       >
         <img

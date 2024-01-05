@@ -20,7 +20,7 @@ export default function SearchBar() {
 
   return (
     <div className="flex justify-center items-center mb-6 md:mb-16 lg:mb-24">
-      <div className="flex justify-between w-full lg:w-auto items-center border-2 border-gray-400 h-10 px-5 rounded-lg text-sm dark:border-gray-300">
+      <div className="flex justify-between w-full lg:w-auto items-center border-2 border-gray-300 h-12 px-5 rounded-full text-base shadow-md">
         <input
           type="search"
           name="search"

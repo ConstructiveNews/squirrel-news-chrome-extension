@@ -37,7 +37,7 @@ export default function ModeDropDownMenu({
     >
       {availableModes.map((mode) => (
         <div
-          className="flex w-20 text-base cursor-pointer flex-col items-center justify-center p-2 first:rounded-t-md last:rounded-b hover:bg-[#e40c5a]"
+          className="flex w-20 text-base cursor-pointer flex-col items-center justify-center p-2 first:rounded-t-md last:rounded-b hover:bg-[#cbcbcb]"
           key={mode}
           onClick={() => handleChange(mode)}
         >
