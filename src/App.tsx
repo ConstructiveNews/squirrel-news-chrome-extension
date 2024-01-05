@@ -40,7 +40,7 @@ export default function App() {
   }, [setArticles]);
 
   return (
-    <div className="font-lato dark:bg-slate-800 lg:h-lvh">
+    <div className="font-lato dark:bg-black lg:h-lvh">
       <div className="flex flex-col px-4 md:px-32">
         <Navbar />
         <SearchBar />

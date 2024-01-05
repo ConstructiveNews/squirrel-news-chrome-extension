@@ -24,7 +24,7 @@ export default function LanguageSwitcher() {
       <div
         role="button"
         data-testid="language-switcher-icon"
-        className="dark:text-white"
+        className="dark:text-white text-base"
         onClick={toggleMenu}
       >
         {i18n.language.toUpperCase()}
