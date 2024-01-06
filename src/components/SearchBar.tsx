@@ -28,6 +28,7 @@ export default function SearchBar() {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           onKeyDown={handleKeyPress}
+          autoFocus
           className="outline-none border-none flex-1 md:w-72 bg-transparent dark:text-white"
         />
         <button type="submit" className="ml-4" onClick={performSearch}>
