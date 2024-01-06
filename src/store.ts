@@ -33,7 +33,7 @@ export const useAppStore = create(
     }),
     {
       name: "squirrel-news-tab-storage",
-      storage: createJSONStorage(() => sessionStorage),
+      storage: createJSONStorage(() => localStorage),
     }
   )
 );

@@ -3,9 +3,7 @@ import { Article, useAppStore } from "./store";
 import Navbar from "./components/Navbar";
 import SearchBar from "./components/SearchBar";
 import NewsItem from "./components/NewsItem";
-import "./i18n";
 import { fetchArticles } from "./utils/fetchArticles";
-import i18n from "./i18n";
 
 export default function App() {
   const { articles, setArticles, setMode } = useAppStore();
@@ -31,16 +29,11 @@ export default function App() {
   }, [setMode]);
 
   useEffect(() => {
-    const defaultLanguage = navigator.language.split(/[-_]/)[0];
-    i18n.changeLanguage(defaultLanguage !== "de" ? "en" : "de");
-  }, []);
-
-  useEffect(() => {
     fetchArticles(setArticles);
   }, [setArticles]);
 
   return (
-    <div className="font-lato dark:bg-black lg:h-lvh">
+    <div className="font-lato dark:bg-[#121212] lg:h-lvh">
       <div className="flex flex-col px-4 md:px-32">
         <Navbar />
         <SearchBar />

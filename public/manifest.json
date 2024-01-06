@@ -17,13 +17,9 @@
       }
   },
   "permissions": [
-    "scripting",
-    "tabs",
-    "activeTab",
     "search"
   ],
   "chrome_url_overrides": {
     "newtab": "index.html"
- }
-  
+  }
 }
