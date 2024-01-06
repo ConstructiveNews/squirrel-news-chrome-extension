@@ -35,8 +35,8 @@ export default function App() {
   return (
     <div className="font-lato dark:bg-[#121212] lg:h-lvh">
       <div className="flex flex-col px-4 md:px-32">
-        <Navbar />
-        <SearchBar />
+        <Navbar className="mb-16" />
+        <SearchBar className="mb-24" />
         <NewsFeed />
       </div>
     </div>

@@ -2,9 +2,9 @@ import Logo from "./Logo";
 import LanguageSwitcher from "./LanguageSwitcher";
 import ModeSwitcher from "./ModeSwitcher";
 
-export default function Navbar() {
+export default function Navbar({ className }: { className?: string}) {
   return (
-    <div className="w-full flex justify-between items-center pt-8 mb-6 md:mb-16">
+    <div className={`w-full flex justify-between items-center pt-8 ${className}`}>
       <div>
         <Logo />  
       </div>
