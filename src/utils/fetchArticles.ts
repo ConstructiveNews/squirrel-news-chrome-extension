@@ -2,27 +2,39 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 import i18n from "../i18n";
 import firebaseConfig from "../../firebase-config.json";
-import type { Article } from "../types";
+import type { IssueTimestamp, Article } from "../types";
 
 firebase.initializeApp(firebaseConfig);
 
-export const fetchArticles = async (setArticles: (articles: Article[]) => void) => {
+interface fetchArticlesProps {
+  issueTimestamp?: IssueTimestamp | null;
+  setIssueTimestamp: (timestamp: IssueTimestamp) => void;
+  setArticles: (articles: Article[]) => void;
+}
+
+export const fetchArticles = async ({ issueTimestamp, setIssueTimestamp, setArticles }: fetchArticlesProps) => {
   const db = firebase.firestore();
 
   try {
-    const issuesSnapshot = await db
+    let issuesSnapshotQuery = db
       .collection("issues")
       .where("language", "==", i18n.language)
       .orderBy("dateCreated", "desc")
-      .limit(1)
-      .get();
+    
+    if (issueTimestamp) {
+      issuesSnapshotQuery = issuesSnapshotQuery.startAfter(issueTimestamp)
+    }
+
+    const issuesSnapshot = await issuesSnapshotQuery.limit(1).get()
 
     if (!issuesSnapshot.empty) {
-      const lastIssueId = issuesSnapshot.docs[0].id;
+      const lastIssue = issuesSnapshot.docs[0]
+      
+      setIssueTimestamp(lastIssue.data().dateCreated)
 
       const articlesSnapshot = await db
         .collection("issues")
-        .doc(lastIssueId)
+        .doc(lastIssue.id)
         .collection("articles")
         .get();
 

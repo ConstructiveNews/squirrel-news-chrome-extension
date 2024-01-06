@@ -11,14 +11,15 @@ export default function LanguageDropDownMenu({
 }: LanguageDropDownMenuProps) {
   const { t, i18n } = useTranslation();
 
-  const { setArticles } = useAppStore();
+  const { setIssueTimestamp, setArticles, resetArticles } = useAppStore();
 
   const changeLanguage = (lng: string) => i18n.changeLanguage(lng);
 
   const handleChange = (language: string) => {
     changeLanguage(language);
     setMenuOpen(false);
-    fetchArticles(setArticles);
+    resetArticles();
+    fetchArticles({ setIssueTimestamp, setArticles }); 
   };
 
   const availableLanguages =

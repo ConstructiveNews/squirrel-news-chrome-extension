@@ -6,7 +6,7 @@ import { fetchArticles } from "./utils/fetchArticles";
 import NewsFeed from "./components/NewsFeed";
 
 export default function App() {
-  const { setArticles, setMode } = useAppStore();
+  const { articles, setIssueTimestamp, setArticles, setMode } = useAppStore();
 
   useEffect(() => {
     const handleMode = () => {
@@ -29,8 +29,10 @@ export default function App() {
   }, [setMode]);
 
   useEffect(() => {
-    fetchArticles(setArticles);
-  }, [setArticles]);
+    if (articles.length === 0) {
+      fetchArticles({ setIssueTimestamp, setArticles });
+    }
+  }, []);
 
   return (
     <div className="font-lato dark:bg-[#121212] lg:h-lvh">
