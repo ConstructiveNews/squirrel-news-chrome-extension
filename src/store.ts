@@ -1,18 +1,8 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
+import type { Article } from "./types";
 
-export type Article = {
-  id: string;
-  credit: string;
-  dateCreated: number;
-  image: string;
-  source: string;
-  teaser: string;
-  title: string;
-  url: string;
-};
-
-export type AppStore = {
+type AppStore = {
   articles: Article[];
   setArticles: (articles: Article[]) => void;
   mode: string;

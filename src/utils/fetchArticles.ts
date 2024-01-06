@@ -2,7 +2,7 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 import i18n from "../i18n";
 import firebaseConfig from "../../firebase-config.json";
-import { Article } from "../../src/store";
+import type { Article } from "../types";
 
 firebase.initializeApp(firebaseConfig);
 
