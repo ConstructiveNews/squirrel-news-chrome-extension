@@ -32,7 +32,7 @@ export default function App() {
     if (articles.length === 0) {
       fetchArticles({ setIssueTimestamp, setArticles });
     }
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="font-lato dark:bg-[#121212] lg:h-lvh">
