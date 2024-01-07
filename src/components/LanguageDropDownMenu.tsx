@@ -19,7 +19,13 @@ export default function LanguageDropDownMenu({
     changeLanguage(language);
     setMenuOpen(false);
     resetArticles();
-    fetchArticles({ setIssueTimestamp, setArticles }); 
+    fetchArticles()
+      .then((data) => {
+      if (data) {
+        setIssueTimestamp(data.lastIssueTimestamp);
+        setArticles(data.articles);
+      }
+    })
   };
 
   const availableLanguages =

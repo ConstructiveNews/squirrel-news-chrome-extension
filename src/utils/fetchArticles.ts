@@ -2,17 +2,15 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 import i18n from "../i18n";
 import firebaseConfig from "../../firebase-config.json";
-import type { IssueTimestamp, Article } from "../types";
+import type { IssueTimestamp } from "../types";
 
 firebase.initializeApp(firebaseConfig);
 
 interface fetchArticlesProps {
   issueTimestamp?: IssueTimestamp | null;
-  setIssueTimestamp: (timestamp: IssueTimestamp) => void;
-  setArticles: (articles: Article[]) => void;
 }
 
-export const fetchArticles = async ({ issueTimestamp, setIssueTimestamp, setArticles }: fetchArticlesProps) => {
+export const fetchArticles = async ({ issueTimestamp }: fetchArticlesProps = {}) => {
   const db = firebase.firestore();
 
   try {
@@ -20,9 +18,11 @@ export const fetchArticles = async ({ issueTimestamp, setIssueTimestamp, setArti
       .collection("issues")
       .where("language", "==", i18n.language)
       .orderBy("dateCreated", "desc")
-    
-    if (issueTimestamp) {
-      issuesSnapshotQuery = issuesSnapshotQuery.startAfter(issueTimestamp)
+
+    if (issueTimestamp) {      
+      const latestTimestamp = new firebase.firestore.Timestamp(issueTimestamp.seconds, issueTimestamp.nanoseconds)
+      
+      issuesSnapshotQuery = issuesSnapshotQuery.startAfter(latestTimestamp)
     }
 
     const issuesSnapshot = await issuesSnapshotQuery.limit(1).get()
@@ -30,8 +30,6 @@ export const fetchArticles = async ({ issueTimestamp, setIssueTimestamp, setArti
     if (!issuesSnapshot.empty) {
       const lastIssue = issuesSnapshot.docs[0]
       
-      setIssueTimestamp(lastIssue.data().dateCreated)
-
       const articlesSnapshot = await db
         .collection("issues")
         .doc(lastIssue.id)
@@ -53,7 +51,10 @@ export const fetchArticles = async ({ issueTimestamp, setIssueTimestamp, setArti
         };
       });
 
-      setArticles(articlesData);
+      return {
+        articles: articlesData, 
+        lastIssueTimestamp: lastIssue.data().dateCreated
+      };
     }
   } catch (error) {
     console.error("Error fetching issues:", error);

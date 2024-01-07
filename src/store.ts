@@ -22,7 +22,7 @@ export const useAppStore = create(
       articles: [],
       resetArticles: () => set({ 
         articles: [],
-        issueTimestamp: null 
+        issueTimestamp: null
       }),
       setArticles: (articles) => set({ articles: [...get().articles, ...articles] }),
       mode: "",

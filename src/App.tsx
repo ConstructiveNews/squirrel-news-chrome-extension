@@ -30,13 +30,20 @@ export default function App() {
 
   useEffect(() => {
     if (articles.length === 0) {
-      fetchArticles({ setIssueTimestamp, setArticles });
+      fetchArticles()
+        .then((data) => {
+          if (data) { 
+            setIssueTimestamp(data.lastIssueTimestamp);
+            setArticles(data.articles);
+          }
+        })
+        .catch((error) => console.error(error));
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="font-lato dark:bg-[#121212] lg:h-lvh">
-      <div className="flex flex-col px-4 md:px-32">
+      <div className="flex flex-col px-4 pb-12 md:px-32">
         <Navbar className="mb-16" />
         <SearchBar className="mb-24" />
         <NewsFeed />
