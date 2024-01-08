@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { useAppStore } from "../store";
-import ModeDropDownMenu from "./ModeDropDownMenu";
+import ThemeModeDropDownMenu from "./ThemeModeDropDownMenu";
 
-export default function ModeSwitcher() {
+export default function ThemeModeSwitcher() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const { mode } = useAppStore();
+  const { themeMode } = useAppStore();
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -14,7 +14,10 @@ export default function ModeSwitcher() {
     document.addEventListener("click", (event) => {
       const target = event.target as HTMLElement;
       if (!menuOpen) return;
-      if (menuOpen && !target.closest("[data-testid='mode-switcher-icon']"))
+      if (
+        menuOpen &&
+        !target.closest("[data-testid='theme-mode-switcher-icon']")
+      )
         setMenuOpen(false);
     });
   }, [menuOpen]);
@@ -23,13 +26,16 @@ export default function ModeSwitcher() {
     <div className="relative flex items-center justify-end">
       <div
         role="button"
-        data-testid="mode-switcher-icon"
+        data-testid="theme-mode-switcher-icon"
         className="w-8"
         onClick={toggleMenu}
       >
-        <img src={`/icons/mode/${mode}.png`} alt={`Mode: ${mode}`} />
+        <img
+          src={`/icons/mode/${themeMode}.png`}
+          alt={`Theme mode: ${themeMode}`}
+        />
       </div>
-      {menuOpen && <ModeDropDownMenu setMenuOpen={setMenuOpen} />}
+      {menuOpen && <ThemeModeDropDownMenu setMenuOpen={setMenuOpen} />}
     </div>
   );
 }

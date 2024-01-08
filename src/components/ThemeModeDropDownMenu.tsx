@@ -1,23 +1,23 @@
 import { useAppStore } from "../store";
 
-export type ModeDropDownMenuProps = {
+export type ThemeModeDropDownMenuProps = {
   setMenuOpen: (open: boolean) => void;
 };
 
-export default function ModeDropDownMenu({
+export default function ThemeModeDropDownMenu({
   setMenuOpen
-}: ModeDropDownMenuProps) {
-  const { setMode } = useAppStore();
+}: ThemeModeDropDownMenuProps) {
+  const { setThemeMode } = useAppStore();
 
-  const handleChange = (mode: string) => {
-    const updatedMode = mode.toLowerCase(); // Convert to lowercase for consistency
+  const handleChange = (themeMode: string) => {
+    const updatedMode = themeMode.toLowerCase(); // Convert to lowercase for consistency
 
     if (updatedMode === "dark") {
       localStorage.theme = "dark";
     } else {
       localStorage.theme = "light";
     }
-    setMode(updatedMode);
+    setThemeMode(updatedMode);
 
     document.documentElement.classList.remove("dark");
     if (updatedMode === "dark") {
@@ -35,13 +35,13 @@ export default function ModeDropDownMenu({
       w-max origin-top-right flex-col items-center rounded-lg border-2
       border-stone-900 bg-white text-stone-900 md:w-max "
     >
-      {availableModes.map((mode) => (
+      {availableModes.map((themeMode) => (
         <div
           className="flex w-20 cursor-pointer flex-col items-center justify-center p-2 text-base first:rounded-t-md last:rounded-b hover:bg-[#cbcbcb]"
-          key={mode}
-          onClick={() => handleChange(mode)}
+          key={themeMode}
+          onClick={() => handleChange(themeMode)}
         >
-          {mode.charAt(0).toUpperCase() + mode.slice(1)}
+          {themeMode.charAt(0).toUpperCase() + themeMode.slice(1)}
         </div>
       ))}
     </div>

@@ -6,10 +6,11 @@ import { fetchArticles } from "./utils/fetchArticles";
 import NewsFeed from "./components/NewsFeed";
 
 export default function App() {
-  const { articles, setIssueTimestamp, setArticles, setMode } = useAppStore();
+  const { articles, setIssueTimestamp, setArticles, setThemeMode } =
+    useAppStore();
 
   useEffect(() => {
-    const handleMode = () => {
+    const handleThemeMode = () => {
       const currentMode = localStorage.theme;
 
       if (
@@ -18,15 +19,15 @@ export default function App() {
           window.matchMedia("(prefers-color-scheme: dark)").matches)
       ) {
         document.documentElement.classList.add("dark");
-        setMode("dark");
+        setThemeMode("dark");
       } else {
         document.documentElement.classList.remove("dark");
-        setMode("light");
+        setThemeMode("light");
       }
     };
 
-    handleMode();
-  }, [setMode]);
+    handleThemeMode();
+  }, [setThemeMode]);
 
   useEffect(() => {
     if (articles.length === 0) {

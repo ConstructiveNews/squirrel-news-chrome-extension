@@ -6,8 +6,8 @@ type AppStore = {
   articles: Article[];
   resetArticles: () => void;
   setArticles: (articles: Article[]) => void;
-  mode: string;
-  setMode: (mode: string) => void;
+  themeMode: string;
+  setThemeMode: (themeMode: string) => void;
   issueTimestamp: IssueTimestamp | null;
   setIssueTimestamp: (issueTimestamp: IssueTimestamp) => void;
 };
@@ -27,8 +27,8 @@ export const useAppStore = create(
         }),
       setArticles: (articles) =>
         set({ articles: [...get().articles, ...articles] }),
-      mode: "",
-      setMode: (mode) => set({ mode }),
+      themeMode: "",
+      setThemeMode: (themeMode) => set({ themeMode }),
       issueTimestamp: null,
       setIssueTimestamp: (issueTimestamp) => set({ issueTimestamp })
     }),
