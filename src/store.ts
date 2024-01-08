@@ -20,11 +20,13 @@ export const useAppStore = create(
   persist<AppStoreState>(
     (set, get) => ({
       articles: [],
-      resetArticles: () => set({ 
-        articles: [],
-        issueTimestamp: null
-      }),
-      setArticles: (articles) => set({ articles: [...get().articles, ...articles] }),
+      resetArticles: () =>
+        set({
+          articles: [],
+          issueTimestamp: null
+        }),
+      setArticles: (articles) =>
+        set({ articles: [...get().articles, ...articles] }),
       mode: "",
       setMode: (mode) => set({ mode }),
       issueTimestamp: null,
@@ -32,7 +34,7 @@ export const useAppStore = create(
     }),
     {
       name: "squirrel-news-tab-storage",
-      storage: createJSONStorage(() => localStorage),
+      storage: createJSONStorage(() => localStorage)
     }
   )
 );

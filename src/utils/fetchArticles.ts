@@ -10,26 +10,31 @@ interface fetchArticlesProps {
   issueTimestamp?: IssueTimestamp | null;
 }
 
-export const fetchArticles = async ({ issueTimestamp }: fetchArticlesProps = {}) => {
+export const fetchArticles = async ({
+  issueTimestamp
+}: fetchArticlesProps = {}) => {
   const db = firebase.firestore();
 
   try {
     let issuesSnapshotQuery = db
       .collection("issues")
       .where("language", "==", i18n.language)
-      .orderBy("dateCreated", "desc")
+      .orderBy("dateCreated", "desc");
 
-    if (issueTimestamp) {      
-      const latestTimestamp = new firebase.firestore.Timestamp(issueTimestamp.seconds, issueTimestamp.nanoseconds)
-      
-      issuesSnapshotQuery = issuesSnapshotQuery.startAfter(latestTimestamp)
+    if (issueTimestamp) {
+      const latestTimestamp = new firebase.firestore.Timestamp(
+        issueTimestamp.seconds,
+        issueTimestamp.nanoseconds
+      );
+
+      issuesSnapshotQuery = issuesSnapshotQuery.startAfter(latestTimestamp);
     }
 
-    const issuesSnapshot = await issuesSnapshotQuery.limit(1).get()
+    const issuesSnapshot = await issuesSnapshotQuery.limit(1).get();
 
     if (!issuesSnapshot.empty) {
-      const lastIssue = issuesSnapshot.docs[0]
-      
+      const lastIssue = issuesSnapshot.docs[0];
+
       const articlesSnapshot = await db
         .collection("issues")
         .doc(lastIssue.id)
@@ -47,12 +52,12 @@ export const fetchArticles = async ({ issueTimestamp }: fetchArticlesProps = {})
           source: article.source,
           teaser: article.teaser,
           title: article.title,
-          url: article.url,
+          url: article.url
         };
       });
 
       return {
-        articles: articlesData, 
+        articles: articlesData,
         lastIssueTimestamp: lastIssue.data().dateCreated
       };
     }

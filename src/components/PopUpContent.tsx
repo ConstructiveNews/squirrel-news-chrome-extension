@@ -6,7 +6,7 @@ export default function PopUpContent() {
       <a
         href="https://squirrel-news.net/"
         target="_blank"
-        className="flex flex-row items-center text-lg mb-8"
+        className="mb-8 flex flex-row items-center text-lg"
       >
         <PopUpLogo />
         Squirrel News

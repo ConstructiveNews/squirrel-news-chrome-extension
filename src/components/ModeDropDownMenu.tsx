@@ -5,7 +5,7 @@ export type ModeDropDownMenuProps = {
 };
 
 export default function ModeDropDownMenu({
-  setMenuOpen,
+  setMenuOpen
 }: ModeDropDownMenuProps) {
   const { setMode } = useAppStore();
 
@@ -33,11 +33,11 @@ export default function ModeDropDownMenu({
     <div
       className="absolute right-0 top-full z-10 flex 
       w-max origin-top-right flex-col items-center rounded-lg border-2
-      bg-white text-stone-900 md:w-max border-stone-900 "
+      border-stone-900 bg-white text-stone-900 md:w-max "
     >
       {availableModes.map((mode) => (
         <div
-          className="flex w-20 text-base cursor-pointer flex-col items-center justify-center p-2 first:rounded-t-md last:rounded-b hover:bg-[#cbcbcb]"
+          className="flex w-20 cursor-pointer flex-col items-center justify-center p-2 text-base first:rounded-t-md last:rounded-b hover:bg-[#cbcbcb]"
           key={mode}
           onClick={() => handleChange(mode)}
         >

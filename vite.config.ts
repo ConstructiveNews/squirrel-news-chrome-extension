@@ -1,6 +1,6 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react-swc'
-import { resolve } from 'path'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react-swc";
+import { resolve } from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -8,8 +8,8 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'index.html'),
-        popup: resolve(__dirname, 'popup.html')
+        main: resolve(__dirname, "index.html"),
+        popup: resolve(__dirname, "popup.html")
       },
       output: {
         entryFileNames: `assets/[name].js`,
@@ -17,6 +17,6 @@ export default defineConfig({
         assetFileNames: `assets/[name].[ext]`
       }
     },
-    minify: false,
+    minify: false
   }
-})
+});

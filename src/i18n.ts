@@ -23,16 +23,15 @@ i18n
   .init({
     resources,
     debug: false,
-    load: 'languageOnly',
+    load: "languageOnly",
     supportedLngs: ["en", "de"],
     interpolation: {
       escapeValue: false
     },
     fallbackLng: "en",
     detection: {
-      convertDetectedLanguage: (lng) => lng.split('-')[0]
+      convertDetectedLanguage: (lng) => lng.split("-")[0]
     }
   });
-
 
 export default i18n;

@@ -19,13 +19,12 @@ export default function LanguageDropDownMenu({
     changeLanguage(language);
     setMenuOpen(false);
     resetArticles();
-    fetchArticles()
-      .then((data) => {
+    fetchArticles().then((data) => {
       if (data) {
         setIssueTimestamp(data.lastIssueTimestamp);
         setArticles(data.articles);
       }
-    })
+    });
   };
 
   const availableLanguages =
@@ -37,11 +36,11 @@ export default function LanguageDropDownMenu({
     <div
       className="absolute right-0 top-full z-10 flex 
       w-max origin-top-right flex-col items-center rounded-lg border-2
-      bg-white text-stone-900 md:w-max border-stone-900"
+      border-stone-900 bg-white text-stone-900 md:w-max"
     >
       {availableLanguages.map((language) => (
         <div
-          className="flex w-20 text-base cursor-pointer flex-col items-center justify-center p-2 first:rounded-t-md last:rounded-b-md hover:bg-[#cbcbcb]"
+          className="flex w-20 cursor-pointer flex-col items-center justify-center p-2 text-base first:rounded-t-md last:rounded-b-md hover:bg-[#cbcbcb]"
           key={language}
           onClick={() => handleChange(language)}
         >

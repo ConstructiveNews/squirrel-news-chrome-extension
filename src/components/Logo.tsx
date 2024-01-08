@@ -5,9 +5,9 @@ export default function Logo() {
 
   return (
     <div className="w-40">
-        <a href="https://squirrel-news.net/news/">
-          <img src={`icons/logos/logo-${mode}mode.svg`} alt="Logo" />
-        </a>
-      </div>
+      <a href="https://squirrel-news.net/news/">
+        <img src={`icons/logos/logo-${mode}mode.svg`} alt="Logo" />
+      </a>
+    </div>
   );
 }

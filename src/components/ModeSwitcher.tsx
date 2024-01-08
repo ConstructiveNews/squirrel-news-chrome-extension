@@ -27,10 +27,7 @@ export default function ModeSwitcher() {
         className="w-8"
         onClick={toggleMenu}
       >
-        <img
-          src={`/icons/mode/${mode}.png`}
-          alt={`Mode: ${mode}`}
-        />
+        <img src={`/icons/mode/${mode}.png`} alt={`Mode: ${mode}`} />
       </div>
       {menuOpen && <ModeDropDownMenu setMenuOpen={setMenuOpen} />}
     </div>
