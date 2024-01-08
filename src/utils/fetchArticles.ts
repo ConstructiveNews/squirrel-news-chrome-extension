@@ -41,7 +41,7 @@ export const fetchArticles = async ({
         .collection("articles")
         .get();
 
-      const articlesData = articlesSnapshot.docs.map((doc) => {
+      const articlesData = articlesSnapshot.docs.map((doc: firebase.firestore.QueryDocumentSnapshot) => {
         const article = doc.data();
 
         return {
