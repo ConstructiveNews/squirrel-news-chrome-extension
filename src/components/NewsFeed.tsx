@@ -3,8 +3,10 @@ import NewsItem from "./NewsItem";
 import { fetchArticles } from "../utils/fetchArticles";
 import { useEffect, useState } from "react";
 import { Article } from "../types";
+import { useTranslation } from "react-i18next";
 
 export default function NewsFeed() {
+  const { i18n } = useTranslation();
   const { articles, issueTimestamp } = useAppStore();
   const [previousArticles, setPreviousArticles] = useState<Article[]>([]);
   const [lastIssueTimestamp, setLastIssueTimestamp] = useState(issueTimestamp);
@@ -12,6 +14,10 @@ export default function NewsFeed() {
   useEffect(() => {
     setLastIssueTimestamp(issueTimestamp);
   }, [issueTimestamp])
+
+  useEffect(() => {
+    setPreviousArticles([]);
+  }, [i18n.language]);
 
   const loadMoreArticles = async () => {
     fetchArticles({ issueTimestamp: lastIssueTimestamp })
