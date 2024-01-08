@@ -43,7 +43,7 @@ export default function App() {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div className="font-lato lg:h-lvh dark:bg-[#121212]">
+    <div className="font-lato dark:bg-[#121212]">
       <div className="flex flex-col px-4 pb-12 md:px-32">
         <Navbar className="mb-16" />
         <SearchBar className="mb-24" />
