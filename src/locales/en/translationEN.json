@@ -7,7 +7,7 @@
     "placeholder": "Type anything to search in web..."
   },
 
-  "LanguageSwitcher": {
-    "choose_language": "Choose language"
+  "LoadMoreButton": {
+    "more": "Load more"
   }
 }

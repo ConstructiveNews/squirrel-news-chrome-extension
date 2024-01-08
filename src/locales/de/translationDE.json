@@ -7,7 +7,7 @@
     "placeholder": "Suche nach einem Begriff im Web..."
   },
 
-  "LanguageSwitcher": {
-    "choose_language": "Sprache wählen"
+  "LoadMoreButton": {
+    "more": "Mehr"
   }
 }
