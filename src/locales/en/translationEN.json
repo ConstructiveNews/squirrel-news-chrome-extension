@@ -4,7 +4,7 @@
 
   "search": {
     "button": "Search",
-    "placeholder": "Type anything to search in web..."
+    "placeholder": "Search the web..."
   },
 
   "LoadMoreButton": {
