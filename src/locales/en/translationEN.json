@@ -9,5 +9,10 @@
 
   "LoadMoreButton": {
     "more": "Load more"
+  },
+
+  "supportButton": {
+    "title": "Support us",
+    "link": "https://squirrel-news.net/support-us/"
   }
 }
