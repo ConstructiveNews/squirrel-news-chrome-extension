@@ -1,8 +1,8 @@
 import { when } from "jest-when";
 import latestIssue from "../../spec/fixtures/latestIssue/enIssue.json";
 import latestIssueArticles from "../../spec/fixtures/latestIssue/enArticles.json";
-// import olderIssue from "../../spec/fixtures/latestIssue/enIssue.json";
-// import olderIssueArticles from "../../spec/fixtures/latestIssue/enArticles.json";
+import olderIssue from "../../spec/fixtures/latestIssue/enIssue.json";
+import olderIssueArticles from "../../spec/fixtures/latestIssue/enArticles.json";
 import { mocked } from "jest-mock";
 
 type MockedFirestoreInstance = {
@@ -50,8 +50,6 @@ const lastIssueSnapshot = (rawIssue: typeof latestIssue) => {
 };
 
 const getFn = jest.fn();
-mocked(getFn).mockReturnValueOnce(lastIssueSnapshot(latestIssue));
-mocked(getFn).mockReturnValueOnce(articlesSnapshot(latestIssueArticles));
 
 const docFn = jest.fn();
 when(docFn).calledWith(latestIssue.id).mockReturnValue(firestoreInstance);
@@ -59,9 +57,24 @@ when(docFn).calledWith(latestIssue.id).mockReturnValue(firestoreInstance);
 const limitFn = jest.fn();
 when(limitFn).calledWith(1).mockReturnValue(firestoreInstance);
 
+class MockedFirestoreTimestamp {
+  seconds: number;
+  nanoseconds: number;
+
+  constructor(seconds: number, nanoseconds: number) {
+    this.seconds = seconds;
+    this.nanoseconds = nanoseconds;
+  }
+}
+
 const startAfterFn = jest.fn();
 when(startAfterFn)
-  .calledWith("latestTimestamp")
+  .calledWith(
+    new MockedFirestoreTimestamp(
+      latestIssue.dateCreated.seconds,
+      latestIssue.dateCreated.nanoseconds
+    )
+  )
   .mockReturnValue(firestoreInstance);
 
 const orderByFn = jest.fn();
@@ -88,6 +101,7 @@ firestoreInstance.get = getFn;
 
 const firestoreFunc = jest.fn();
 firestoreFunc.mockReturnValue(firestoreInstance);
+(firestoreFunc as any).Timestamp = MockedFirestoreTimestamp; // eslint-disable-line @typescript-eslint/no-explicit-any
 
 const initializeAppFunc = jest.fn();
 
@@ -104,6 +118,11 @@ import { fetchArticles } from "./fetchArticles";
 
 describe("fetchArticles", () => {
   describe("when issueTimestamp is not provided", () => {
+    beforeEach(() => {
+      mocked(getFn).mockReturnValueOnce(lastIssueSnapshot(latestIssue));
+      mocked(getFn).mockReturnValueOnce(articlesSnapshot(latestIssueArticles));
+    });
+
     it("returns first issue articles", async () => {
       const articles = await fetchArticles();
 
@@ -126,16 +145,32 @@ describe("fetchArticles", () => {
         lastIssueTimestamp: latestIssue.dateCreated
       });
     });
+  });
 
-    // describe("when issueTimestamp is provided", () => {
-    //   it("returns next issue articles", async () => {
-    //     const articles = await fetchArticles({
-    //       issueTimestamp: {
-    //         seconds: 123,
-    //         nanoseconds: 456
-    //       }
-    //     });
-    //   });
-    // });
+  describe("when issueTimestamp is provided", () => {
+    beforeEach(() => {
+      mocked(getFn).mockReturnValueOnce(lastIssueSnapshot(olderIssue));
+      mocked(getFn).mockReturnValueOnce(articlesSnapshot(olderIssueArticles));
+    });
+
+    it("returns next issue articles", async () => {
+      const articles = await fetchArticles({
+        issueTimestamp: latestIssue.dateCreated
+      });
+
+      expect(articles).toEqual({
+        articles: olderIssueArticles.map((article) => ({
+          id: article.id,
+          credit: article.credit,
+          dateCreated: article.dateCreated.seconds * 1000,
+          imageUrl: article.imageUrl,
+          source: article.source,
+          teaser: article.teaser,
+          title: article.title,
+          url: article.url
+        })),
+        lastIssueTimestamp: latestIssue.dateCreated
+      });
+    });
   });
 });
