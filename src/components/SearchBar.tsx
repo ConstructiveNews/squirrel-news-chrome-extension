@@ -20,7 +20,10 @@ export default function SearchBar({ className }: { className?: string }) {
 
   return (
     <div className={`flex items-center justify-center ${className}`}>
-      <div className="flex h-12 w-full items-center justify-between rounded-full border-2 border-gray-300 px-5 text-base shadow-md lg:w-auto">
+      <div
+        className="flex h-14 w-full items-center justify-between rounded-full border-2
+      border-gray-300 px-5 text-base shadow-md lg:w-auto "
+      >
         <input
           type="search"
           name="search"
@@ -29,7 +32,7 @@ export default function SearchBar({ className }: { className?: string }) {
           onChange={(e) => setSearchTerm(e.target.value)}
           onKeyDown={handleKeyPress}
           autoFocus
-          className="flex-1 border-none bg-transparent outline-none md:w-72 dark:text-white"
+          className="flex-1 border-none bg-transparent outline-none placeholder:text-gray-500 md:w-72 dark:text-white dark:placeholder:text-gray-400"
         />
         <button type="submit" className="ml-4" onClick={performSearch}>
           <MagnifyingGlassIcon className="h-5 w-5 text-gray-600 dark:text-white" />
