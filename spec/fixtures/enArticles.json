@@ -1,0 +1,80 @@
+[
+  {
+    "id": "1",
+    "credit": "Author 1",
+    "dateCreated": {
+      "seconds": 1704903211,
+      "nanoseconds": 0
+    },
+    "imageUrl": "https://squirrel-news.net/wp-content/image-1.jpg",
+    "source": "Squirrel News",
+    "teaser": "Teaser 1",
+    "title": "Title 1",
+    "url": "https://squirrel-news.net/title-1"
+  },
+  {
+    "id": "2",
+    "credit": "Author 2",
+    "dateCreated": {
+      "seconds": 1704903212,
+      "nanoseconds": 0
+    },
+    "imageUrl": "https://squirrel-news.net/wp-content/image-2.jpg",
+    "source": "Squirrel News",
+    "teaser": "Teaser 2",
+    "title": "Title 2",
+    "url": "https://squirrel-news.net/title-2"
+  },
+  {
+    "id": "3",
+    "credit": "Author 3",
+    "dateCreated": {
+      "seconds": 1704903213,
+      "nanoseconds": 0
+    },
+    "imageUrl": "https://squirrel-news.net/wp-content/image-3.jpg",
+    "source": "Squirrel News",
+    "teaser": "Teaser 3",
+    "title": "Title 3",
+    "url": "https://squirrel-news.net/title-3"
+  },
+  {
+    "id": "4",
+    "credit": "Author 4",
+    "dateCreated": {
+      "seconds": 1704903214,
+      "nanoseconds": 0
+    },
+    "imageUrl": "https://squirrel-news.net/wp-content/image-4.jpg",
+    "source": "Squirrel News",
+    "teaser": "Teaser 4",
+    "title": "Title 4",
+    "url": "https://squirrel-news.net/title-4"
+  },
+  {
+    "id": "5",
+    "credit": "Author 5",
+    "dateCreated": {
+      "seconds": 1704903215,
+      "nanoseconds": 0
+    },
+    "imageUrl": "https://squirrel-news.net/wp-content/image-5.jpg",
+    "source": "Squirrel News",
+    "teaser": "Teaser 5",
+    "title": "Title 5",
+    "url": "https://squirrel-news.net/title-5"
+  },
+  {
+    "id": "6",
+    "credit": "Author 6",
+    "dateCreated": {
+      "seconds": 1704903216,
+      "nanoseconds": 0
+    },
+    "imageUrl": "https://squirrel-news.net/wp-content/image-6.jpg",
+    "source": "Squirrel News",
+    "teaser": "Teaser 6",
+    "title": "Title 6",
+    "url": "https://squirrel-news.net/title-6"
+  }
+]

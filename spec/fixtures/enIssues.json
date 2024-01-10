@@ -1,0 +1,15 @@
+[
+  {
+    "id": "1",
+    "credit": "Author 1",
+    "dateCreated": {
+      "seconds": 1704903211,
+      "nanoseconds": 0
+    },
+    "image": "https://squirrel-news.net/wp-content/image-1.jpg",
+    "source": "Squirrel News",
+    "teaser": "Teaser 1",
+    "title": "Title 1",
+    "url": "https://squirrel-news.net/title-1"
+  }
+]

@@ -32,7 +32,11 @@ export const fetchArticles = async ({
 
     const issuesSnapshot = await issuesSnapshotQuery.limit(1).get();
 
-    if (!issuesSnapshot.empty) {
+    if (
+      !issuesSnapshot.empty &&
+      issuesSnapshot.docs &&
+      issuesSnapshot.docs.length > 0
+    ) {
       const lastIssue = issuesSnapshot.docs[0];
 
       const articlesSnapshot = await db
@@ -41,25 +45,29 @@ export const fetchArticles = async ({
         .collection("articles")
         .get();
 
-      const articlesData = articlesSnapshot.docs.map((doc: firebase.firestore.QueryDocumentSnapshot) => {
-        const article = doc.data();
+      const articlesData = articlesSnapshot.docs.map(
+        (doc: firebase.firestore.QueryDocumentSnapshot) => {
+          const article = doc.data();
 
-        return {
-          id: doc.id,
-          credit: article.credit,
-          dateCreated: article.dateCreated?.seconds * 1000,
-          image: article.imageUrl,
-          source: article.source,
-          teaser: article.teaser,
-          title: article.title,
-          url: article.url
-        };
-      });
+          return {
+            id: doc.id,
+            credit: article.credit,
+            dateCreated: article.dateCreated?.seconds * 1000,
+            imageUrl: article.imageUrl,
+            source: article.source,
+            teaser: article.teaser,
+            title: article.title,
+            url: article.url
+          };
+        }
+      );
 
       return {
         articles: articlesData,
         lastIssueTimestamp: lastIssue.data().dateCreated
       };
+    } else {
+      console.error("Articles snapshot is undefined or empty");
     }
   } catch (error) {
     console.error("Error fetching issues:", error);

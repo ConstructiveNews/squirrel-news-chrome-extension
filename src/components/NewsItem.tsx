@@ -9,7 +9,7 @@ export default function NewsItem({ article }: NewsItemProps) {
     <a href={article.url} className="flex flex-col">
       <img
         className="mb-2 h-40 object-cover"
-        src={article.image}
+        src={article.imageUrl}
         alt={article.title}
       />
       <div className="mb-2 text-sm uppercase text-gray-500 dark:text-gray-400">

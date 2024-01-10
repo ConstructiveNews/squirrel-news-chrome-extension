@@ -8,7 +8,7 @@ export type Article = {
   id: string;
   credit: string;
   dateCreated: number;
-  image: string;
+  imageUrl: string;
   source: string;
   teaser: string;
   title: string;
