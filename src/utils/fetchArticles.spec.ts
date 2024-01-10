@@ -1,6 +1,8 @@
 import { when } from "jest-when";
-import enArticles from "../../spec/fixtures/enArticles.json";
-import enIssues from "../../spec/fixtures/enIssues.json";
+import latestIssue from "../../spec/fixtures/latestIssue/enIssue.json";
+import latestIssueArticles from "../../spec/fixtures/latestIssue/enArticles.json";
+// import olderIssue from "../../spec/fixtures/latestIssue/enIssue.json";
+// import olderIssueArticles from "../../spec/fixtures/latestIssue/enArticles.json";
 import { mocked } from "jest-mock";
 
 type MockedFirestoreInstance = {
@@ -15,38 +17,44 @@ type MockedFirestoreInstance = {
 
 const firestoreInstance: MockedFirestoreInstance = {};
 
-const articleSnapshot = {
-  docs: enArticles.map((article) => ({
-    id: article.id,
-    data: () => ({
-      credit: article.credit,
-      dateCreated: {
-        seconds: article.dateCreated.seconds
-      },
-      imageUrl: article.imageUrl,
-      source: article.source,
-      teaser: article.teaser,
-      title: article.title,
-      url: article.url
-    })
-  }))
+const articlesSnapshot = (rawArticles: typeof latestIssueArticles) => {
+  return {
+    docs: rawArticles.map((article) => ({
+      id: article.id,
+      data: () => ({
+        credit: article.credit,
+        dateCreated: {
+          seconds: article.dateCreated.seconds
+        },
+        imageUrl: article.imageUrl,
+        source: article.source,
+        teaser: article.teaser,
+        title: article.title,
+        url: article.url
+      })
+    }))
+  };
 };
 
-const lastIssuesSnapshot = {
-  docs: enIssues.map((issue) => ({
-    id: issue.id,
-    data: () => ({
-      dateCreated: issue.dateCreated
-    })
-  }))
+const lastIssueSnapshot = (rawIssue: typeof latestIssue) => {
+  return {
+    docs: [
+      {
+        id: rawIssue.id,
+        data: () => ({
+          dateCreated: rawIssue.dateCreated
+        })
+      }
+    ]
+  };
 };
 
 const getFn = jest.fn();
-mocked(getFn).mockReturnValueOnce(lastIssuesSnapshot);
-mocked(getFn).mockReturnValueOnce(articleSnapshot);
+mocked(getFn).mockReturnValueOnce(lastIssueSnapshot(latestIssue));
+mocked(getFn).mockReturnValueOnce(articlesSnapshot(latestIssueArticles));
 
 const docFn = jest.fn();
-when(docFn).calledWith("1").mockReturnValue(firestoreInstance);
+when(docFn).calledWith(latestIssue.id).mockReturnValue(firestoreInstance);
 
 const limitFn = jest.fn();
 when(limitFn).calledWith(1).mockReturnValue(firestoreInstance);
@@ -95,28 +103,39 @@ jest.mock("firebase/compat/app", () => {
 import { fetchArticles } from "./fetchArticles";
 
 describe("fetchArticles", () => {
-  it("should return articles", async () => {
-    const articles = await fetchArticles();
+  describe("when issueTimestamp is not provided", () => {
+    it("returns first issue articles", async () => {
+      const articles = await fetchArticles();
 
-    expect(initializeAppFunc).toHaveBeenCalledTimes(1);
-    expect(collectionFn).toHaveBeenCalledWith("issues");
-    expect(whereFn).toHaveBeenCalledWith("language", "==", "en");
-    expect(orderByFn).toHaveBeenCalledWith("dateCreated", "desc");
-    console.log(articles?.lastIssueTimestamp);
-    console.log(enIssues[0].dateCreated);
+      expect(initializeAppFunc).toHaveBeenCalledTimes(1);
+      expect(collectionFn).toHaveBeenCalledWith("issues");
+      expect(whereFn).toHaveBeenCalledWith("language", "==", "en");
+      expect(orderByFn).toHaveBeenCalledWith("dateCreated", "desc");
 
-    expect(articles).toEqual({
-      articles: enArticles.map((article) => ({
-        id: article.id,
-        credit: article.credit,
-        dateCreated: article.dateCreated.seconds * 1000,
-        imageUrl: article.imageUrl,
-        source: article.source,
-        teaser: article.teaser,
-        title: article.title,
-        url: article.url
-      })),
-      lastIssueTimestamp: enIssues[0].dateCreated
+      expect(articles).toEqual({
+        articles: latestIssueArticles.map((article) => ({
+          id: article.id,
+          credit: article.credit,
+          dateCreated: article.dateCreated.seconds * 1000,
+          imageUrl: article.imageUrl,
+          source: article.source,
+          teaser: article.teaser,
+          title: article.title,
+          url: article.url
+        })),
+        lastIssueTimestamp: latestIssue.dateCreated
+      });
     });
+
+    // describe("when issueTimestamp is provided", () => {
+    //   it("returns next issue articles", async () => {
+    //     const articles = await fetchArticles({
+    //       issueTimestamp: {
+    //         seconds: 123,
+    //         nanoseconds: 456
+    //       }
+    //     });
+    //   });
+    // });
   });
 });
