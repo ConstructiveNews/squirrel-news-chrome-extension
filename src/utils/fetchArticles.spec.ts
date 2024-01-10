@@ -130,6 +130,7 @@ describe("fetchArticles", () => {
       expect(collectionFn).toHaveBeenCalledWith("issues");
       expect(whereFn).toHaveBeenCalledWith("language", "==", "en");
       expect(orderByFn).toHaveBeenCalledWith("dateCreated", "desc");
+      expect(limitFn).toHaveBeenCalledWith(1);
 
       expect(articles).toEqual({
         articles: latestIssueArticles.map((article) => ({
@@ -157,6 +158,18 @@ describe("fetchArticles", () => {
       const articles = await fetchArticles({
         issueTimestamp: latestIssue.dateCreated
       });
+
+      expect(initializeAppFunc).toHaveBeenCalledTimes(1);
+      expect(collectionFn).toHaveBeenCalledWith("issues");
+      expect(whereFn).toHaveBeenCalledWith("language", "==", "en");
+      expect(orderByFn).toHaveBeenCalledWith("dateCreated", "desc");
+      expect(limitFn).toHaveBeenCalledWith(1);
+      expect(startAfterFn).toHaveBeenCalledWith(
+        new MockedFirestoreTimestamp(
+          latestIssue.dateCreated.seconds,
+          latestIssue.dateCreated.nanoseconds
+        )
+      );
 
       expect(articles).toEqual({
         articles: olderIssueArticles.map((article) => ({
