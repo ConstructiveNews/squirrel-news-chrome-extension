@@ -12,7 +12,15 @@ type MockedFirestoreInstance = {
   get?: jest.Mock;
 };
 
-const firestoreInstance: MockedFirestoreInstance = {};
+export class MockedFirestoreTimestamp {
+  seconds: number;
+  nanoseconds: number;
+
+  constructor(seconds: number, nanoseconds: number) {
+    this.seconds = seconds;
+    this.nanoseconds = nanoseconds;
+  }
+}
 
 export const articlesSnapshot = (rawArticles: typeof latestIssueArticles) => {
   return {
@@ -46,6 +54,8 @@ export const lastIssueSnapshot = (rawIssue: typeof latestIssue) => {
   };
 };
 
+const firestoreInstance: MockedFirestoreInstance = {};
+
 export const getFn = jest.fn();
 firestoreInstance.get = getFn;
 
@@ -56,16 +66,6 @@ when(docFn).calledWith(latestIssue.id).mockReturnValue(firestoreInstance);
 export const limitFn = jest.fn();
 firestoreInstance.limit = limitFn;
 when(limitFn).calledWith(1).mockReturnValue(firestoreInstance);
-
-export class MockedFirestoreTimestamp {
-  seconds: number;
-  nanoseconds: number;
-
-  constructor(seconds: number, nanoseconds: number) {
-    this.seconds = seconds;
-    this.nanoseconds = nanoseconds;
-  }
-}
 
 export const startAfterFn = jest.fn();
 firestoreInstance.startAfter = startAfterFn;
