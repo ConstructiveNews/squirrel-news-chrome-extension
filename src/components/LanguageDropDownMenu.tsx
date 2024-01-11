@@ -13,6 +13,7 @@ export default function LanguageDropDownMenu({
 
   const { setIssueTimestamp, setArticles, resetArticles } = useAppStore();
 
+  // Design note: 2_setting_language.md
   const changeLanguage = (lng: string) => i18n.changeLanguage(lng);
 
   const handleChange = (language: string) => {

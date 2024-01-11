@@ -8,6 +8,7 @@ export default function SearchBar({ className }: { className?: string }) {
 
   const performSearch = () => {
     if (searchTerm) {
+      // Chrome browser detects user's default search engine and uses it to perform search
       chrome.search.query({ text: searchTerm, disposition: "CURRENT_TAB" });
     }
   };

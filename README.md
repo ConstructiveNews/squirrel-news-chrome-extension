@@ -2,24 +2,29 @@
 
 This project is a Chrome extension for the [Squirrel News](https://squirrel-news.net/) website. 
 
-It allows you to view the latest news on the new tab page of your browser.
+It allows you to view the latest news on the new tab of your browser.
 
 ## Technologies used
 
 * React 
 * Typescript 
-* Firebase
 * Vite 
 * Zustand
 * Tailwind CSS
+* Firebase
+* i18next
+* Jest 
+* ESLint
+* Prettier
 
 ## Features
 
 1. Single Page Application (SPA) built with React. 
 2. Responsive markup with Tailwind CSS. 
-3. The App supports German and English languages. The default language is automatically set based on the user's browser language. The news is then fetched and displayed in the selected language. Users can change the language at any time, and the app will fetch and display the news in the chosen language.
-4. The App supports dark mode. The app automatically sets the theme based on the user's browser settings to prevent discomfort. The user can also change the theme at any time.
+3. The App supports German and English languages. The default language is automatically set based on the user's browser language. Read more about it in [this design note](design_notes/2_setting_language.md)
+4. The App supports dark mode. The app automatically sets the theme based on the user's browser settings to prevent discomfort. Read more about it in [this design note](design_notes/1_setting_theme_mode.md)
 5. The app includes a search field that automatically detects the user's default search engine and uses it to perform searches.
+6. Unit test with Jest. At the moment the tests cover the main fetchArticles function. Read more about it in [this design note](design_notes/4_test_fetchArticles.md)
 
 ## Development
 
@@ -35,6 +40,15 @@ npm run mon
 
 # Build the app for production
 npm run build
+```
+
+You'll find the running version at http://localhost:5173.
+
+## Testing
+
+```sh
+# Run tests
+npm run test
 ```
  
 ## Publishing new version

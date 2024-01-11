@@ -17,6 +17,8 @@ import {
   articlesSnapshot
 } from "../../spec/utils/fake-firebase";
 
+// Design note: design_notes/5_fake_firebase.md
+
 jest.mock("firebase/compat/app", () => fakeFirebase);
 
 import { fetchArticles } from "./fetchArticles";

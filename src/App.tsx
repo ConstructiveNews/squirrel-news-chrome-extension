@@ -10,6 +10,7 @@ export default function App() {
     useAppStore();
 
   useEffect(() => {
+    // Design note: 1_setting_theme_mode.md
     const handleThemeMode = () => {
       const currentMode = localStorage.theme;
 
@@ -30,16 +31,20 @@ export default function App() {
   }, [setThemeMode]);
 
   useEffect(() => {
-    if (articles.length === 0) {
-      fetchArticles()
-        .then((data) => {
-          if (data) {
-            setIssueTimestamp(data.lastIssueTimestamp);
-            setArticles(data.articles);
-          }
-        })
-        .catch((error) => console.error(error));
-    }
+    const fetchInitialArticles = () => {
+      if (articles.length === 0) {
+        fetchArticles()
+          .then((data) => {
+            if (data) {
+              setIssueTimestamp(data.lastIssueTimestamp);
+              setArticles(data.articles);
+            }
+          })
+          .catch((error) => console.error(error));
+      }
+    };
+
+    fetchInitialArticles();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
