@@ -32,6 +32,9 @@ It allows you to view the latest news on the new tab of your browser.
 # Install dependencies
 npm install
 
+# Copy firebase-config.json.template to firebase-config.json and fill in the values
+cp firebase-config.json.template firebase-config.json
+
 # Option 1: run the app in browser mode (use http://localhost:5173 for local debugging)
 npm run dev
 
